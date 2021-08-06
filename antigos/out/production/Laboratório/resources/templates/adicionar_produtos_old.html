@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<#assign title="adicionar_produtos">
+
+<#include "/base.ftl" >
+
+<body>
+		<script > 
+
+			
+
+
+
+
+
+			
+			function ativaBotao()
+			{
+
+				var x=document.querySelectorAll('button');
+
+
+				for ( i = 0; x.length - 1; i++) {
+					x[i].disabled=false;
+				}
+			}
+		</script>
+
+
+    <!---<#include "/navbar.ftl">--->
+    
+        <#if utilizador?exists>
+            <h1 class="display-3">Bem-vindo/a, ${utilizador.util_nome}!</h1>
+		</#if>	
+
+	<form >	
+		<table>	
+				<tr>
+					<td>	
+						<img src=${estabelecimento.estab_logo} width=20%>
+					</td>
+					<td>
+						
+						<button onclick="ativaBotao()">iniciar compra</button>
+					</td>
+				</tr>
+		</table>
+		
+		
+		<table>		    				
+		    			<#list produtos as prod>	
+		    				<tr>
+		    					<td>
+		    						<input type="text" name="prod_nome" readonly disable="disable" value="${prod.prod_nome}">
+		    					</td>
+			    				<td>
+			    					<input  type="number" name="quantidade"  value="0" min="0" max="99">
+								</td>
+		    					<td>
+		    						<p>${prod.prod_preco_atual} €</p>
+		    					</td>
+			    				<td>
+			    					<button id="ativo" name="produto" class="btn btn-primary btn-toggle" disabled type="submit"  style="background-color: #956348; border-color: #956348">Adicionar ao carrinho</button>
+			    				</td>
+		    				</tr>
+		    				<tr>
+		    					<td><br/></td>
+		    				</tr>
+		    			</#list>
+		</table>
+		</form>
+
+		<a href="/logout/" class="btn btn-primary btn-toggle" role="button" aria-disabled="true" style="background-color: #956348; border-color: #956348">Sair</a>	
+
+
+</body>
+
+    <!---<#include "/footer.ftl">--->
+
+
+</html>
+
+
+<!---
+            
+--->

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<#assign title="homepage_cliente">
+<#include "/base.ftl" >
+<body class="d-flex flex-column h-100">
+    <#include "/navbar.ftl">
+    <main class="flex-shrink-0" role="main">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-1"></div>
+                <div class="col-md-auto">
+                    <h1 class="display-3">Bem-vindo/a, ${utilizador.util_nome}!</h1>
+                    <div class=my-container-xl style="padding-bottom: 2rem">
+                        <h1 class="display-5">Seleciona um estabelecimento</h1>
+                        <#if erroEstab?exists>
+                            <p class="alert alert-danger">Não podes escolher estabelecimentos diferentes ¯\_(ツ)_/¯<br>
+                                Continua a comprar no <a href="/catalogo/${estab2.estab_nome}/">${estab2.estab_nome}</a></p>
+                        </#if>
+                        <#if erroEnc?exists>
+                            <p class="alert alert-danger">Falha ao finalizar encomenda ¯\_(ツ)_/¯</p>
+                        </#if>
+                        <#if sem_estafetas?exists>
+                            <p class="alert alert-danger">Nenhum estafeta entrega no teu concelho ¯\_(ツ)_/¯<br>
+                                Tenta mais tarde!</p>
+                        </#if>
+                        <div class="container catalogo"  style="max-width: 500px; padding-top: 25px; padding-bottom: 25px">
+                            <form method="post" action="/filtrar/">
+                                <div class="input-group row">
+                                    <div class="col-sm-8">
+                                        <select class="custom-select" name="tipo_cozinha">
+                                            <#if escolhido?exists>
+                                                <option  value="escolhido">${escolhido}</option>
+                                            </#if>
+                                            <#if listaFavoritos?exists>
+                                                <option  value="favoritos">Favoritos</option>
+                                            </#if>
+                                            <#list tipos as tipo>
+                                                <option value="${tipo.estab_tipo_cozinha}">${tipo.estab_tipo_cozinha}</option>
+                                            </#list>
+                                        </select>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary btn-toggle" type="submit" style="background-color: #956348; border-color: #956348">Filtrar</button>
+                                        <a href="/homepage_cliente/" class="btn btn-primary btn-toggle" role="button" aria-disabled="true" style="background-color: #956348; border-color: #956348">Repor</a>
+                                    </div>
+                                </div>
+                            </form><br/>
+                            <#list estabelecimentos as est>
+                                <a style="padding: 10px" href="/catalogo/${est.estab_nome}/"><img class="img-fluid rounded mx-auto d-block" src=${est.estab_logo} width=100% title="${est.estab_nome} - ${est.estab_tipo_cozinha}"></a>
+                            </#list>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col col-lg-1"></div>
+
+            </div>
+
+        </div>
+
+    </main>
+<#include "/footer.ftl">
+</body>
+</html>

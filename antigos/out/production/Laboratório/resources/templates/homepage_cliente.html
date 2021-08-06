@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<#assign title="homepage_cliente">
+
+<#include "/base.ftl" >
+
+
+<body>
+    <!--<#include "/navbar.ftl">-->
+    <div>
+        <#if utilizador?exists>
+            <h1 class="display-3">Bem-vindo/a, ${utilizador.util_nome}!</h1>
+	</#if>
+            <br/>
+            	<div class=my-container-xl>
+
+		    					<h1 class="display-5">Selecione o estabelecimento</h2>
+
+		    		<table>		    				
+		    			<#list estabelecimentos as est>	
+		    				<li>
+		    				<tr>
+		    					<td>
+		    						<img src=${est.estab_logo} width=40%>
+		    					</td>
+		    					<td>
+									<a href="/adicionar_produtos/${est.estab_nome}/0/" class="btn btn-primary btn-toggle" role="button" aria-disabled="true" style="background-color: #956348; border-color: #956348">${est.estab_nome}</a>
+		    					</td>
+		    					<td>
+		    						<h3 class="my-h2"> ${est.estab_tipo_cozinha} (horário de funcionamento: ${est.estab_horario})
+		    					</td> 	
+		    				</tr>
+		    				<tr>
+		    					<td><br/></td>
+		    				</tr>
+		    				</li>
+
+		    			</#list>
+		    		</table>
+		    	</div>
+
+<a href="/logout/" class="btn btn-primary btn-toggle" role="button" aria-disabled="true" style="background-color: #956348; border-color: #956348">Sair</a>
+
+
+
+</body>
+    <!---<#include "/footer.ftl">--->
+
+
+
+
+
+
+
+</html>
+
+
+<!---
+            
+--->

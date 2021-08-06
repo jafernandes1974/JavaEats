@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<#assign title="homepage">
+
+<#include "/base.ftl">
+
+		<body>
+			<#include "/navbar.ftl">
+
+			<h1>O teu carrinho, ${utilizador.util_nome}!</h1>
+
+			<table style="color: cornsilk; width:100%">
+				<tr>
+				  <th>Produtos</th>
+                  <th>quantidade</th>
+				  <th>preço unitário</th>
+                  <th>preço total</th>
+				  <th></th>
+				  <th></th>
+				</tr>
+				<tr>
+				  <td>hamburguer</td>
+				  <td>2</td>
+				  <td>13€</td>
+				  <td>26€</td>
+				  <td><input class="btn btn-primary" type="submit" value="detalhes"></td>
+				  <td><input class="btn btn-primary" type="submit" value="remover"></td>
+				  
+				</tr>
+				<tr>
+				  <td></td>
+				  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td></td>
+				  <td></td>
+				  <td></td>
+				</tr>
+			  </table>
+
+              <input class="btn btn-primary" type="submit" value="confirmar encomenda">
+
+              <input class="btn btn-primary" type="submit" value="voltar">
+
+
+
+			<#include "/footer.ftl">
+		</body>
+
+</html>

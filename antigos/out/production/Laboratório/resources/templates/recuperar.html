@@ -1,0 +1,26 @@
+<html lang="en">
+<#assign title="recuperar password">
+
+<#include "/base.ftl" >
+<body>
+    <div>
+        <h1 class="display-2" style="text-align: center; color: #e6e6e6;"><b>JavaEats</b></h1>
+    </div>
+
+    <div class="my-container-sm geral">
+            <h2 style="padding-bottom: 10px">Recuperar password</h2>
+            <form method="post" action="nova_password/" class="form-group">
+                <input class="form-control" type="email" id="email" name="email" placeholder="Email" required><br>
+                <div>
+                    <button class="btn btn-primary btn-toggle" type="submit" style="background-color: #956348; border-color: #956348">Enviar</button>
+
+                    <a href="/login/" class="btn btn-primary btn-toggle" role="button" aria-disabled="true" style="background-color: #956348; border-color: #956348">Voltar</a>
+                </div>
+            </form>
+            <#if email_not_found?exists>
+                <p class="alert alert-danger">Email não registado!</p>
+            </#if>
+        </div>
+<#include "/footer.ftl">
+</body>
+</html>

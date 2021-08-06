@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<#assign title="conta estafeta">
+
+<#include "/base.ftl">
+
+<body class="d-flex flex-column h-100">
+<#include "/navbar.ftl">
+<main class="flex-shrink-0" role="main" >
+	<div class="container">
+		<div class="row justify-content-md-center">
+			<div class="col col-lg-1"></div>
+			<div class="col-md-auto catalogo">
+				<div class="my-container-lg geral">
+					<#if naoDesativa?exists>
+					<p class="alert alert-danger">Ainda tens <a href="/homepage_estafeta/">encomendas</a> por entregar! (ಠ_ಠ)</p>
+						<hr/>
+					</#if>
+					<h2 style="color: #2B2D2F;">A tua conta, ${utilizador.util_nome}!</h2><hr/>
+					<img src="${estafeta.estaf_foto_perfil}" width="150">
+					<hr/>
+					<h6 class="mb-0">Data de nascimento</h6>
+					${estafeta.estaf_data_nascimento}
+					<hr/>
+
+					<h6 class="mb-0">Email</h6>
+					${utilizador.util_email}<hr/>
+					<h6 class="mb-0">Telemóvel</h6>
+					${utilizador.util_telemovel}<hr/>
+					<h6 class="mb-0">Área de entrega</h6>
+					<#list concelhosAtuais as concelho>
+					<li>${concelho.conc_nome}</li>
+					</#list><hr/>
+					<h6 class="mb-0">Morada</h6>
+					${utilizador.util_morada}<hr/>
+					<h6 class="mb-0">Nº de identificação fiscal</h6>
+					${utilizador.util_nif}<hr/>
+					<h6 class="mb-0">IBAN</h6>
+					PT50${estafeta.estaf_iban}<hr/>
+					<h6 class="mb-0">Nº de segurança social</h6>
+					${estafeta.estaf_niss}<hr/>
+					<h6 class="mb-0">Transporte motorizado</h6>
+					${transporte}
+					<hr/>
+					<h6 class="mb-0">Categoria</h6>
+					${categoria}<hr/>
+					<a href="/homepage_estafeta/" class="btn btn-primary btn-toggle cafe2" role="button" aria-disabled="true">Voltar</a>
+					<a href="/conta/alterar/" class="btn btn-primary btn-toggle cafe" role="button" aria-disabled="true"> &#x270F; Editar dados</a>
+					<a href="/desativar/" class="btn btn-secondary btn-toggle" role="button" aria-disabled="true">&#x1F6C7; Desativar conta</a>
+				</div>
+		</div>
+		<div class="col col-lg-1"></div>
+	</div>
+	</div>
+</main>
+<#include "/footer.ftl">
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+<#assign title="Pedidos pendentes">
+<#include "/base.ftl" >
+<#setting locale="pt_PT">
+<body class="d-flex flex-column h-100">
+    <#include "/navbar.ftl">
+    <main class="flex-shrink-0" role="main" >
+        <div class="container">
+        <h1 class="page-title">Notificações</h1>
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-1"></div>
+                <div class="col-md-auto catalogo">
+                    <table class="table table-dark table-responsive">
+                        <tbody>
+                            <tr>
+                                <th>Data</th>
+                                <th>Hora</th>
+                                <th>Mensagem</th>
+                            </tr>
+                            <#if sem_notificacoes?exists>
+                                <tr><td colspan="3"><h2>Sem notificações (╯°□°）╯︵ ┻━┻</h2></td></tr>
+                            <#else>
+                                <#list notificacoes as notificacao>
+                                    <tr>
+                                        <td>${notificacao.not_data}</td>
+                                        <td>${notificacao.not_hora}</td>
+                                        <td>${notificacao.not_texto}</td>
+                                    </tr>
+                                </#list>
+                            </#if>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col col-lg-1"></div>
+            </div>
+        </div>
+    </main>
+    <#include "/footer.ftl">
+</body>
+</html>

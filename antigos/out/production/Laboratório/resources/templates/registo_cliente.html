@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<#assign title="registo cliente">
+
+<#include "/base.ftl" >
+<body>
+	<h1> Preenche o formulário</h1>
+	<p>todos os campos são de preenchimento obrigatório</p>
+	<div class="my-container-lg geral">
+		<form method="post" action="add/" class="form-group">
+			<div>
+				<input class="form-control" type="text" name="nome" placeholder="Nome completo" required> <br/>
+				<input class="form-control" type="date" name="dataNascimento" placeholder="Data de nascimento" required> <br/>
+				<label>Adicionar foto de perfil:</label> <br/>
+				<input type="file" name="foto" required> <br/><br/>
+				<input class="form-control" type="email" name="email" placeholder="Email" required> <br/>
+				<input class="form-control" type="tel" name="telemovel" placeholder="Telemóvel" required> <br/>
+				<input class="form-control" type="text" name="morada" placeholder="Morada (rua, andar, nº porta, código-postal, cidade)" size="100" required> <br/>
+
+				<select class="form-control" name="concelho" required>
+					<#list concelhos as concelho>
+					<option value="${concelho.conc_nome}">${concelho.conc_nome}</option>
+				</#list>
+				</select><br/><br/>
+
+				<input class="form-control" type="text" name="nif" placeholder="Nº de Identificação Fiscal" required> <br/>
+				<input class="form-control" type="text" name="cartao" placeholder="Número do cartão" required> <br/>
+				<input class="form-control" type="password" name="password1" placeholder="Password" required> <br/>
+				<input class="form-control" type="password" name="password2" placeholder="Confirmar password" required>
+
+			</div>
+			<div>
+				<input type="radio" name="termos" required>
+				<label>confirmo que li e aceito os termos e condições</label>
+
+				<button class="btn btn-primary btn-toggle" type="submit" style="background-color: #956348; border-color: #956348">Enviar</button>
+
+				<a href="/login/" class="btn btn-primary btn-toggle" role="button" aria-disabled="true" style="background-color: #956348; border-color: #956348">Voltar</a>
+
+			</div>
+		</form>
+	</div>
+
+	<#if passwords_not_equal?exists>
+		<p class="alert alert-danger">Passwords não são iguais!</p>
+	</#if>
+<#include "/footer.ftl">
+</body>
+
+</html>

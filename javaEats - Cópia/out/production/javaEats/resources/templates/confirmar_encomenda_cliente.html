@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<#assign title="Finalizar encomenda">
+<#include "/base.ftl" >
+<#setting locale="pt_PT">
+<body class="d-flex flex-column h-100">
+<#include "/navbar.ftl">
+        <main class="flex-shrink-0" role="main" >
+            <div class="container">
+                <h1 class="page-title">Finalizar encomenda</h1>
+                <div class="row justify-content-md-center">
+                    <div class="col col-lg-1"></div>
+                    <div class="col-md-auto catalogo">
+                        <table class="table table-dark table-responsive">
+                            <div class="form-group">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2"><h1 class="display-5">Encomenda #${pedido.enc_id}</h1></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Estado</th>
+                                        <td class="text-left">${pedido.enc_estado_entrega}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Data do Pedido</th>
+                                        <td class="text-left">${data}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Hora do Pedido</th>
+                                        <td class="text-left"> ${hora}</td>
+                                    </tr>
+                                    <#list conteudo as item>
+                                        <tr>
+                                            <th>Item ${item?counter}</th>
+                                            <td class="text-left">${item.prod_nome} x${item.enc_prod_quantidade} - ${(item.enc_prod_quantidade * item.enc_prod_preco_venda)?string.currency}</td>
+                                        </tr>
+                                    </#list>
+                                    <tr>
+                                        <th></th>
+                                        <th class="text-left">Total ${total?string.currency}</th>
+                                    </tr>
+                                </thead>
+                            </div>
+                        </table>
+                        <div class="catalogo">
+                            <p class="form-text">Atenção:
+                                <br/>O pagamento é feito no ato da entrega</p>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <button onclick="history.back()" class="btn btn-primary btn-toggle cafe2" role="button" aria-disabled="true">Voltar</button>
+                            <a href="finalizar/${total}/" class="btn btn-success btn-toggle">Finalizar</a>
+                        </div>
+                    </div>
+                    <div class="col col-lg-1"></div>
+                </div>
+            </div>
+        </main>
+        <#include "/footer.ftl">
+    </body>
+</html>

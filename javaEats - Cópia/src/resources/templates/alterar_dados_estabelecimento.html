@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<#assign title="alterar dados de estabelecimento">
+<#include "/base.ftl" >
+
+<body class="d-flex flex-column h-100">
+	<main class="flex-shrink-0" role="main" >
+		<div class="container">
+			<div class="row justify-content-md-center">
+				<div class="col col-lg-1"></div>
+				<div class="col-md-auto catalogo">
+					<div class="my-container-lg geral">
+                        <h2 style="color: #2B2D2F;">Edita os teus dados</h2>
+						<p style="color: #696969;">selecciona o campo pretendido e altera-o</p>
+						<form method="post" action="/conta/alterar/estabelecimento/" class="form-group">
+							<img src="${estabelecimento.estab_logo}" width="150" maxlength="100"><hr/>
+							<label>Altera a tua foto de perfil:</label>
+							<input class="form-control" type="file" name="altfoto">
+							<hr/>
+							<label>Nome:</label>
+							<input class="form-control" type="text" name="altnome" value="${utilizador.util_nome}" maxlength="100" required>
+							<hr/>
+							<label>telemóvel:</label>
+							<input class="form-control" type="text" name="alttelemovel" pattern="^[29][0-9]{8}$" value="${utilizador.util_telemovel}" required>
+							<hr/>
+							<label>Morada:</label>
+							<textarea class="form-control" type="text" rows="2" name="altmorada" placeholder="Rua, nº da porta, andar, código postal" maxlength="200" data-toggle="tooltip" title="Morada completa: caso contrário a entrega não será efetuada" required value="${utilizador.util_morada}">${utilizador.util_morada}</textarea><hr/>
+							<hr/>
+							<label>Concelho:</label>
+							<select class="form-control" name="altconcelhos" multiple>
+								<#list concelhosAtuais as concelhoAtual>
+									<option value="${concelhoAtual.conc_nome}" selected>${concelhoAtual.conc_nome}</option>
+								</#list>
+								<#list concelhos as concelho>
+									<option value="${concelho.conc_nome}">${concelho.conc_nome}</option>
+								</#list>
+							</select>
+							<hr/>
+							<label>Horário de funcionamento:</label>
+							<div class="input-group">
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Abertura</span>
+									</div>
+									<input class="form-control" type="time" name="altabertura" value="${abertura}" required>
+
+									<div class="input-group-prepend">
+										<span class="input-group-text">Fecho</span>
+									</div>
+									<input class="form-control" type="time" name="altfecho" value="${fecho}" required>
+								</div>
+							</div>
+							<hr/>
+							<label>Tipo de cozinha:</label>
+							<input class="form-control" type="text" name="altcozinha" value="${estabelecimento.estab_tipo_cozinha}" required>
+							<hr/>
+							<label>Nº de identificação fiscal:</label>
+							<input class="form-control" type="text" name="altnif" pattern="^[1-9][0-9]{8}$" value="${utilizador.util_nif}" required>
+							<hr/>
+							<label>IBAN:</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">PT50</span>
+								</div>
+								<input class="form-control" type="text" name="altiban"
+									   data-toggle="tooltip" title="IBAN válido em Portugal" required
+									   pattern="^[0-9]{21}$" value="${estabelecimento.estab_iban}">
+							</div>
+							<hr/>
+							<a href="/alterar_password/${estabelecimento.id_util}/" class="btn btn-primary btn-toggle cafe2" role="button" aria-disabled="true"> &#x270F; Alterar password</a><br/>
+							<button style="margin: 10px 10px;" class="btn btn-success btn-toggle" type="submit">Confirmar</button>
+							<a style="margin: 10px 10px;" href="/conta/" class="btn btn-danger btn-toggle" role="button" aria-disabled="true">Cancelar</a>
+						</form>
+						<#if passwordAlterada?exists>
+							<p class="alert alert-success">Password alterada com sucesso!</p>
+						</#if>
+					</div>
+				</div>
+				<div class="col col-lg-1"></div>
+			</div>
+		</div>
+	</main>
+	<#include "/footer.ftl">
+</body>
+</html>

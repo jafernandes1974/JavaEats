@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<#assign title="alterar dados de estafeta">
+
+<#include "/base.ftl" >
+
+<body>
+<h1>Altera os teus dados</h1>
+<p>selecciona o campo pretendido e altera-o</p>
+    <div class="my-container-lg geral">
+        <form method="post" action="/conta/alterar/estafeta/" class="form-group">
+            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" width="150"><hr/>
+            <label>Altera a tua foto de perfil:</label> <br>
+            <input class="form-control" type="file" name="altfoto"> <br>
+            <label>Nome:</label><br>
+            <input class="form-control" type="text" name="altnome" value="${utilizador.util_nome}"><hr/>
+            <label>Data de nascimento:</label><br>
+            <input class="form-control" type="text" name="altdnasc" value="${estafeta.estaf_data_nascimento}"><hr/>
+            <label>Telemóvel</label><br>
+            <input class="form-control" type="text" name="alttelemovel" value="${utilizador.util_telemovel}" required> <hr/>
+            <label>Morada:</label><br>
+            <input class="form-control" type="text" name="altmorada" value="${utilizador.util_morada}" size="100" required> <hr/>
+            <label>Concelho:</label><br>
+            <select name="altconcelhos" multiple class="form-control">
+                <#list concelhosAtuais as concelhoAtual>
+                    <option value="${concelhoAtual.conc_nome}" selected>${concelhoAtual.conc_nome}</option>
+                </#list>
+                <#list concelhos as concelho>
+                    <option value="${concelho.conc_nome}">${concelho.conc_nome}</option>
+                </#list>
+            </select><hr/>
+            <label>Nº de identificação fiscal:</label><br>
+            <input class="form-control" type="text" name="altnif" value="${utilizador.util_nif}" required> <hr/>
+            <label>IBAN:</label><br>
+            <input class="form-control" type="text" name="altiban" value="${estafeta.estaf_iban}" required> <hr/>
+            <label>Nº de segurança social:</label><br>
+            <input class="form-control" type="text" name="altniss" value="${estafeta.estaf_niss}" required> <hr/>
+            <label>Transporte motorizado</label> <br>
+            <input type="checkbox" name="alttrans" value="1">
+            <label> Sim</label>
+            <input type="checkbox" name="alttrans" value="0">
+            <label> Não</label><hr>
+            <label>Categoria:</label><br>
+            <input class="form-control" type="text" name="altcategoria" value="${categoria}"><hr>
+            <button class="btn btn-primary  btn-toggle" type="submit" style="background-color: #956348; border-color: #956348">Enviar</button>
+            <a href="/conta/" class="btn btn-primary btn-toggle" role="button" aria-disabled="true" style="background-color: #956348; border-color: #956348">Cancelar</a>
+
+        </form>
+    </div>
+<#include "/footer.ftl">
+</body>
+
+</html>

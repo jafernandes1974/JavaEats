@@ -1,0 +1,6 @@
+insert into produto (prod_nome, prod_descricao, prod_preco, prod_foto, id_estab)				
+	"values (""bacalhau à Brás"", ""Acompanhado de Salada, sobremesa incluída"", 7.00, "			
+"    LOAD_FILE(""C:\Users\José\Desktop\Laboratório\JavaEats.jpg""), 1);"				
+				
+				
+prod_nome	prod_descricao	prod_preco	prod_foto	id_estab
