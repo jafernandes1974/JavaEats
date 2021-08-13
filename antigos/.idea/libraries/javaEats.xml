@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="javaEats">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/javaEats/javaEats.zip!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
